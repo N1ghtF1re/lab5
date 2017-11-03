@@ -2,7 +2,7 @@ Lab №4. Working with one-dimensional arrays
 --------------------
 ***
 #### Task:
-![The task](https://i.imgur.com/Wte1nAU.png)
+![The task](https://i.imgur.com/eXOAOt1.png)
 
 >The program analyzes the sorting data
 
