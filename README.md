@@ -1,4 +1,4 @@
-Lab №4. Working with one-dimensional arrays
+Lab №5. Analysis of array sorts
 --------------------
 ***
 #### Task:
