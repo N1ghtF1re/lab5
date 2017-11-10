@@ -145,17 +145,6 @@ begin
     CreateTableRow(k, 'rev. ord.' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // REVERS END
 
-
-
-
-
-    // NEED DELETE START
-    {Writeln(#10#10);
-    for i:=1 to k do
-      write(BA[i]:4);
-    writeln(#10,BubbleComparisons);
-    Writeln(BubblePermutations);      }
-    // NEED DELETE END
   end;
   Readln;
 end.
