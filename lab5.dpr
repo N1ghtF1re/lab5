@@ -11,7 +11,7 @@ var BA,SA, MainArr: TArray;
 procedure writeTableHead;
 begin
   Writeln('+---------+-------------------------------+-------------------------------+');
-  Writeln('|         |        Shell Sorting #1       |     Adv. Bubble Sorting #1    |');
+  Writeln('|         |        Shell Sorting #1       |     Adv. Bubble Sorting #2    |');
   Writeln('|  Array  +---------------+---------------+---------------+---------------+');
   Writeln('|  type   |  Number of    |   Number of   |  Number of    |   Number of   |');
   Writeln('|         |  comparisons  |   exchanges   |  comparisons  |   exchanges   |');
@@ -33,9 +33,7 @@ begin
   //writeln('t = ', t);
   for i:=1 to t do
   begin
-    // Writeln('t= ',t+1-i);
     k:= (1 shl (t+1-i)) - 1;
-    // Writeln(k);
     for j:=(k + 1) to Size do
     begin
       tmp:=SA[j];
@@ -48,8 +46,8 @@ begin
         Inc(Perm);
       end;
       SA[m+k] := tmp;
+      Inc(Perm);
       Inc(Comp);
-      //Inc(Perm);
     end;
   end;
 end;
@@ -127,16 +125,19 @@ begin
     end;
     coppy(SA,MainArr,k);
     coppy(BA,MainArr,k);
+
     // UNSORTED BEGIN
     ShellSort(k,ShellComparisons,ShellPermutations);
     advBubble(k,BubbleComparisons,BubblePermutations);
     CreateTableRow(k, 'unsorted' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // UNSORTED END
+
     // SORTED BEGIN
     ShellSort(k,ShellComparisons,ShellPermutations);
     advBubble(k,BubbleComparisons,BubblePermutations);
     CreateTableRow(k, 'sorted  ' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // SORTED END
+
     // REVERS START
     reverse(SA,k);
     reverse(BA,k);
@@ -148,3 +149,4 @@ begin
   end;
   Readln;
 end.
+
