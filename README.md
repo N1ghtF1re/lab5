@@ -17,7 +17,7 @@ In progress
 program lab5;
 
 {$APPTYPE CONSOLE}
-const N=2000; MaxValue = 100; Shift = 50;
+const N=2000; MaxValue = 200; Shift = 100;
 type TArray = array[1..N] of integer;
 var BA,SA, MainArr: TArray;
     i,p,k: integer;
@@ -33,15 +33,9 @@ begin
   Writeln('|         |  comparisons  |   exchanges   |  comparisons  |   exchanges   |');
   Writeln('+---------+---------------+---------------+---------------+---------------+');
 end;
-procedure coppy(var Arr, InitArr : TArray; Size: integer);
-var i: integer;
-begin
-  for i:= 1 to Size do
-    Arr[i] := InitArr[i];
-end;
 
-procedure ShellSort(var Size, Comp, Perm: integer);
-var t,k,i,j,tmp,m:integer;
+procedure ShellSort(const Size: integer; var Comp, Perm: integer; var SA: TArray);
+var t,k,i,j,tmp,m,numb:integer;
 begin
   Comp:= 0;
   Perm:= 0;
@@ -54,15 +48,18 @@ begin
     begin
       tmp:=SA[j];
       m:=j-k;
+      numb:=0;
       While((m>=1) and (SA[m] > tmp)) do
       begin
         SA[M+k] := SA[m];
         m:=m-k;
         Inc(Comp);
         Inc(Perm);
+        Inc(numb);
       end;
       SA[m+k] := tmp;
-      Inc(Perm);
+      if(numb = 0) then
+        Inc(Perm);
       Inc(Comp);
     end;
   end;
@@ -76,7 +73,7 @@ begin
   arr[el2]:=tmp;
 end;
 
-procedure advBubble(var Size, Comp, Perm: Integer);
+procedure advBubble(const Size:integer; var Comp, Perm: Integer; var SA: TArray);
 var i,k,z:integer;
 F: Boolean;
 begin
@@ -139,32 +136,32 @@ begin
       2 : k := 100;
       3 : k := 2000;
     end;
-    coppy(SA,MainArr,k);
-    coppy(BA,MainArr,k);
+    SA:=MainArr;
+    BA:=MainArr;
 
     // UNSORTED BEGIN
-    ShellSort(k,ShellComparisons,ShellPermutations);
-    advBubble(k,BubbleComparisons,BubblePermutations);
+    ShellSort(k,ShellComparisons,ShellPermutations, SA);
+    advBubble(k,BubbleComparisons,BubblePermutations, BA);
     CreateTableRow(k, 'unsorted' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // UNSORTED END
 
     // SORTED BEGIN
-    ShellSort(k,ShellComparisons,ShellPermutations);
-    advBubble(k,BubbleComparisons,BubblePermutations);
+    ShellSort(k,ShellComparisons,ShellPermutations, SA);
+    advBubble(k,BubbleComparisons,BubblePermutations, BA);
     CreateTableRow(k, 'sorted  ' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // SORTED END
 
     // REVERS START
     reverse(SA,k);
     reverse(BA,k);
-    ShellSort(k,ShellComparisons,ShellPermutations);
-    advBubble(k,BubbleComparisons,BubblePermutations);
+    ShellSort(k,ShellComparisons,ShellPermutations, SA);
+    advBubble(k,BubbleComparisons,BubblePermutations, BA);
     CreateTableRow(k, 'rev. ord.' , ShellComparisons,ShellPermutations,BubbleComparisons,BubblePermutations);
     // REVERS END
-
   end;
   Readln;
 end.
+
 
 
 
