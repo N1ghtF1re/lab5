@@ -8,10 +8,6 @@ Lab №5. Analysis of array sorts
 
 **Language**: Delphi
 
-**Algorithm scheme**: 
-
-In progress
-
 **Code:**
 ``` pascal
 program lab5;
